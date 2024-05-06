@@ -1,21 +1,22 @@
 import { Container, DivLogin, DivSearch, InputSeach, LeftBotton, P } from './styles'
 
-import { FaAngleDoubleLeft, FaUserCircle  } from 'react-icons/fa'
-import { IoSearch } from "react-icons/io5";
-
+import { FaAngleDoubleLeft, FaUserCircle } from 'react-icons/fa'
+import { IoSearch } from 'react-icons/io5'
+import { WorkSpace } from '../WorkSpace'
 
 export const SideBar = () => {
   return (
     <Container>
       <LeftBotton>
-        <FaAngleDoubleLeft style={{ cursor: 'pointer' }} />
+        <FaAngleDoubleLeft color="#797486" style={{ cursor: 'pointer' }} />
       </LeftBotton>
       <DivLogin>
-        <FaUserCircle /> Fazer login
+        <FaUserCircle color="#797486" /> <P>Fazer login</P>
       </DivLogin>
       <DivSearch>
-        <IoSearch/> <InputSeach placeholder='Busca rápida' />
+        <IoSearch color="#797486" /> <InputSeach placeholder="Busca rápida" />
       </DivSearch>
+      <WorkSpace />
     </Container>
   )
 }

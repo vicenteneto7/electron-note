@@ -56,7 +56,6 @@ export const P = styled.p`
   font-weight: 400;
   
   display: flex;
-  align-items: center;
   justify-content: flex-start;
 
   text-align: start;
