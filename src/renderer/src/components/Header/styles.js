@@ -7,6 +7,8 @@ export const Container = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: center;
+  
+  -webkit-app-region: drag;
 
   background-color: #17141f;
 

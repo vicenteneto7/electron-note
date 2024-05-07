@@ -1,13 +1,14 @@
-import { Route, Routes } from 'react-router-dom'
+import { Router, Route } from 'electron-router-dom'
+import { Docs } from '../pages/DocsBar'
 
-import { Home } from '../pages/Home'
-
-const MyRouter = () => {
+export function Routes() {
   return (
-    <Routes>
-      <Route path="/" Component={Home} />
-    </Routes>
+    <Router
+      main={
+        <>
+          <Route path="/" element={<Docs />} />
+        </>
+      }
+    />
   )
 }
-
-export default MyRouter

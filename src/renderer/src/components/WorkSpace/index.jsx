@@ -28,7 +28,7 @@ export const WorkSpace = () => {
         </P>
       </Container2>
       <Container3>
-        <IoMdAdd color="#797486" /> <P>Create new page</P>
+        <IoMdAdd cursor='pointer' color="#797486" /> <P>Create new page</P>
       </Container3>
     </Container>
   )
