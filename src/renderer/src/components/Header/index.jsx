@@ -1,10 +1,11 @@
 import clsx from 'clsx'
 import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
+import PropTypes from 'prop-types'
+
 import * as Breadcrumbs from './Breadcrumbs'
+import * as Collapsible from '@radix-ui/react-collapsible'
 
-export function Header() {
-  const isSidebarOpen = true
-
+export function Header({ isSidebarOpen }) {
   return (
     <div
       id="header"
@@ -16,14 +17,14 @@ export function Header() {
         }
       )}
     >
-      <button
+      <Collapsible.Trigger
         className={clsx('h-5 w-5 text-rotion-200 hover:text-rotion-50', {
           hidden: isSidebarOpen,
           block: !isSidebarOpen
         })}
       >
         <CaretDoubleRight className="h-4 w-4" />
-      </button>
+      </Collapsible.Trigger>
 
       <>
         <Breadcrumbs.Root>
@@ -48,4 +49,8 @@ export function Header() {
       </>
     </div>
   )
+}
+
+Header.propTypes = {
+  isSidebarOpen: PropTypes.bool
 }
