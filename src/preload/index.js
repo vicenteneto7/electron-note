@@ -1,20 +1,41 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { documentsQuery } from '../renderer/src/models/documentsManager'
+
+const getDocuments = () => {
+  return documentsQuery.getDocuments()
+}
+const addDocument = (body) => {
+  console.log('window.api', body)
+  documentsQuery.addDocument(body)
+}
+
+const getDocumentsById = (id) => {
+  return documentsQuery.getDocumentsById(id)
+}
+
+const updateDocumentsById = (body, id) => {
+  documentsQuery.updateDocumentsById(body, id)
+}
+
+const deleteDocumentsById = (id) => {
+  documentsQuery.deleteDocumentsById(id)
+}
+
 
 // Custom APIs for renderer
 const api = {
+  getDocuments(){
+    return ipcRenderer.invoke('getDocuments')
+  },
+  addDocument,
+  getDocumentsById,
+  updateDocumentsById,
+  deleteDocumentsById,
   fetchDocuments() {
     return ipcRenderer.invoke('fetch-documents')
   }
 }
-
-contextBridge.exposeInMainWorld('versions', {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electronV: () => process.versions.electron,
-
-  // You can also expose variables, not just functions
-});
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

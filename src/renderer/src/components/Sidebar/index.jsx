@@ -30,7 +30,7 @@ export function Sidebar() {
 
   
   const { data: documents = [] } = useQuery({queryKey:['documents'], refetchInterval: 10000, refetchOnWindowFocus: true ,refetchOnReconnect: true, queryFn: async () => {
-    const res = await window.api.fetchDocuments()
+    const res = await window.api.getDocuments()
 
     console.log(res)
 

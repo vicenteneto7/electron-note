@@ -1,12 +1,11 @@
+import db from '../renderer/src/models/DBManager.js'
 import { ipcMain } from 'electron'
 
-ipcMain.handle('fetch-documents', async () => {
-  return [
-    { id: 1, title: 'React' },
-    { id: 2, title: 'Docs' },
-    { id: 3, title: 'Electron' },
-    { id: 4, title: 'Docs' },
-    { id: 5, title: 'Docs5' },
-    { id: 6, title: 'SQLite' }
-  ]
+ipcMain.handle('getDocuments', async () => {
+  const query = 'SELECT * FROM documents;'
+  const stmt = db.prepare(query)
+
+  return stmt.all()
 })
+
+
