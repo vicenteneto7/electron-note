@@ -15,14 +15,13 @@ ipcMain.handle('getDocumentsById', async (_, { id }) => {
   return stmt.get(id)
 })
 
-ipcMain.handle('addDocument', async (_, req) => {
+ipcMain.handle('addDocument', async () => {
   const body = {
-    title: req.title,
-    content: req.content || '',
+    title: 'Untitled',
   }
 
-  const query = `INSERT INTO documents (title, content)
-      VALUES (:title, :content)`
+  const query = `INSERT INTO documents (title)
+      VALUES (:title)`
   const stmt = db.prepare(query)
 
   return stmt.run({ ...body })
