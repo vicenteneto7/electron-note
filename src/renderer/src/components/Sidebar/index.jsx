@@ -28,14 +28,18 @@ export function Sidebar() {
     loadUsers()
   }, []) */
 
-  
-  const { data: documents = [] } = useQuery({queryKey:['documents'], refetchInterval: 10000, refetchOnWindowFocus: true ,refetchOnReconnect: true, queryFn: async () => {
-    const res = await window.api.getDocuments()
 
-    console.log(res)
+  const { data: documents = [] } = useQuery({
+    queryKey: ['documents'], /* refetchInterval: 10000, */ refetchOnWindowFocus: true, refetchOnReconnect: true, queryFn: async () => {
+      const res = await window.api.getDocuments()
 
-    return res
-  }})
+      console.log('feito do zero')
+
+      console.log(res)
+
+      return res
+    }
+  })
 
   return (
     <Collapsible.Content className="bg-rotion-800 flex-shrink-0 border-r border-rotion-600 h-screen relative group data-[state=open]:animate-slideIn data-[state=closed]:animate-slideOut overflow-hidden">

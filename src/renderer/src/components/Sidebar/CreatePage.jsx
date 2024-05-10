@@ -1,14 +1,26 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Plus } from 'phosphor-react'
 
 export function CreatePage() {
+  const queryClient = useQueryClient()
 
   const { isPending: isCreatingNewDocument, mutateAsync: CreateDocument } = useMutation({
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(['documents'])
+      /* queryClient.setQueriesData(['documents'], (documents) => {
+        if (documents && documents?.length >= 0) {
+          return [...documents, data]
+        } else {
+          return [data]
+        }
+      }) */
+    },
     mutationFn: async () => {
       const response = await window.api.addDocument()
 
+      console.log(response)
 
-      return response.data
+      return response
     }
   })
 
