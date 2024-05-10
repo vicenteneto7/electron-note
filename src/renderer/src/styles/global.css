@@ -5,3 +5,7 @@
 html {
   overflow: hidden;
 }
+
+* {
+  outline: none;
+}
