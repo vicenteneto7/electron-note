@@ -26,8 +26,8 @@ const api = {
   getDocuments(){
     return ipcRenderer.invoke('getDocuments')
   },
-  getDocumentsById(id){
-    return ipcRenderer.invoke('getDocumentsById', id)
+  getDocumentById(id){
+    return ipcRenderer.invoke('getDocumentById', id)
   },
   addDocument(){
     return ipcRenderer.invoke('addDocument')

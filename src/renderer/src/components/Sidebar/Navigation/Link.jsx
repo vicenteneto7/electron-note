@@ -29,5 +29,5 @@ export function Link({ to, children }) {
 }
 
 Link.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 }

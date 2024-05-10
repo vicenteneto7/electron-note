@@ -8,7 +8,7 @@ ipcMain.handle('getDocuments', async () => {
   return stmt.all()
 })
 
-ipcMain.handle('getDocumentsById', async (_, { id }) => {
+ipcMain.handle('getDocumentById', async (_, { id }) => {
   const query = `SELECT * FROM documents WHERE id = ?`
   const stmt = db.prepare(query)
 
