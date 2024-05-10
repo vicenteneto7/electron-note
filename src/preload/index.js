@@ -2,9 +2,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 import { documentsQuery } from '../renderer/src/models/documentsManager'
 
-const getDocuments = () => {
-  return documentsQuery.getDocuments()
-}
+
 const addDocument = (body) => {
   console.log('window.api', body)
   documentsQuery.addDocument(body)
@@ -28,10 +26,18 @@ const api = {
   getDocuments(){
     return ipcRenderer.invoke('getDocuments')
   },
-  addDocument,
-  getDocumentsById,
-  updateDocumentsById,
-  deleteDocumentsById,
+  getDocumentsById(id){
+    return ipcRenderer.invoke('getDocumentsById', id)
+  },
+  addDocument(req){
+    return ipcRenderer.invoke('addDocument', req)
+  },
+  updateDocumentsById(req){
+    return ipcRenderer.invoke('updateDocumentsById', req)
+  },
+  deleteDocumentsById(id){
+    return ipcRenderer.invoke('deleteDocumentsById', id)
+  },
   fetchDocuments() {
     return ipcRenderer.invoke('fetch-documents')
   }
