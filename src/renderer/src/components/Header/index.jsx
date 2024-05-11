@@ -44,30 +44,34 @@ export function Header({ isSidebarOpen }) {
         <CaretDoubleRight className="h-4 w-4" />
       </Collapsible.Trigger>
 
-      <>
-        <Breadcrumbs.Root>
-          <Breadcrumbs.Item>
-            <Code weight="bold" className="h-4 w-4 text-pink-500" />
-            Estrutura técnica
-          </Breadcrumbs.Item>
-          <Breadcrumbs.Separator />
-          <Breadcrumbs.HiddenItems />
-          <Breadcrumbs.Separator />
-          <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
-          <Breadcrumbs.Separator />
-          <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
-        </Breadcrumbs.Root>
+      {
+        id && (
+          <>
+            <Breadcrumbs.Root>
+              <Breadcrumbs.Item>
+                <Code weight="bold" className="h-4 w-4 text-pink-500" />
+                Estrutura técnica
+              </Breadcrumbs.Item>
+              <Breadcrumbs.Separator />
+              <Breadcrumbs.HiddenItems />
+              <Breadcrumbs.Separator />
+              <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
+              <Breadcrumbs.Separator />
+              <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
+            </Breadcrumbs.Root>
 
-        <div className="inline-flex region-no-drag">
-          <button
-            onClick={() => deleteDocuments()}
-            disabled={isDeletingDocument}
-            className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50 disabled:opacity-60">
-            <TrashSimple className="h-4 w-4" />
-            Apagar
-          </button>
-        </div>
-      </>
+            <div className="inline-flex region-no-drag">
+              <button
+                onClick={() => deleteDocuments()}
+                disabled={isDeletingDocument}
+                className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50 disabled:opacity-60">
+                <TrashSimple className="h-4 w-4" />
+                Apagar
+              </button>
+            </div>
+          </>
+        )
+      }
     </div>
   )
 }
