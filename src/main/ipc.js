@@ -27,11 +27,11 @@ ipcMain.handle('addDocument', async () => {
   return stmt.run({ ...body })
 })
 
-ipcMain.handle('updateDocumentsById', async (_, req) => {
+ipcMain.handle('updateDocumentsById', async (_, { id, title, content }) => {
   const body = {
-    id: req.id,
-    title: req.title,
-    content: req.content || ''
+    id,
+    title,
+    content,
   }
 
   const query = `UPDATE documents SET title = ?, content = ? WHERE id = ?`

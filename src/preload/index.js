@@ -1,9 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import { electronAPI } from '@electron-toolkit/preload'
 import { documentsQuery } from '../renderer/src/models/documentsManager'
 
 
-const addDocument = (body) => {
+/* const addDocument = (body) => {
   console.log('window.api', body)
   documentsQuery.addDocument(body)
 }
@@ -18,7 +17,7 @@ const updateDocumentsById = (body, id) => {
 
 const deleteDocumentsById = (id) => {
   documentsQuery.deleteDocumentsById(id)
-}
+} */
 
 
 // Custom APIs for renderer
@@ -49,12 +48,11 @@ const api = {
 if (process.contextIsolated) {
   //se context...existe dentro do process
   try {
-    contextBridge.exposeInMainWorld('electron', electronAPI) //preload-expoe ao processo renderer as apis, possiveis comunic entre main e renderer, ent elas tem q ser delcaradas no preload
+    //preload-expoe ao processo renderer as apis, possiveis comunic entre main e renderer, ent elas tem q ser delcaradas no preload
     contextBridge.exposeInMainWorld('api', api)
   } catch (error) {
     console.error(error)
   }
 } else {
-  window.electron = electronAPI
   window.api = api
 }

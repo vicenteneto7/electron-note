@@ -7,7 +7,7 @@ import StarterKit from '@tiptap/starter-kit'
 
 import PropTypes from 'prop-types'
 
-export function Editor({ content }) {
+export function Editor({ content, onContentUpdated }) {
   const editor = useEditor({
     extensions: [
       Document.extend({
@@ -24,6 +24,18 @@ export function Editor({ content }) {
           'before:content-[attr(data-placeholder)] before:text-gray-500 before:h-0 before:float-left before:pointer-events-none'
       })
     ],
+    onUpdate: ({ editor }) => {
+      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups
+
+      const title = parsedContent?.title ?? 'Untitled'
+      const content = parsedContent?.content ?? ''
+
+      onContentUpdated({
+        title,
+        content,
+      })
+    },
     content,
     autofocus: 'end',
     editorProps: {
