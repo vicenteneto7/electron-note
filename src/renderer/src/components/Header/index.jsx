@@ -4,8 +4,26 @@ import PropTypes from 'prop-types'
 
 import * as Breadcrumbs from './Breadcrumbs'
 import * as Collapsible from '@radix-ui/react-collapsible'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export function Header({ isSidebarOpen }) {
+  const queryClient = useQueryClient()
+  const { id } = useParams()
+  const navigate = useNavigate()
+
+  const { mutateAsync: deleteDocuments, isPending: isDeletingDocument, } = useMutation({
+    onSuccess: () => {
+      queryClient.setQueryData(['documents'], (documents) => {
+        return documents.filter((document) => document.id !== id)
+      })
+      queryClient.invalidateQueries(['documents'])
+      navigate('/')
+    }, mutationFn: async () => {
+      await window.api.deleteDocumentsById({ id })
+    }
+  })
+
   return (
     <div
       id="header"
@@ -41,7 +59,10 @@ export function Header({ isSidebarOpen }) {
         </Breadcrumbs.Root>
 
         <div className="inline-flex region-no-drag">
-          <button className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50">
+          <button
+            onClick={() => deleteDocuments()}
+            disabled={isDeletingDocument}
+            className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50 disabled:opacity-60">
             <TrashSimple className="h-4 w-4" />
             Apagar
           </button>
