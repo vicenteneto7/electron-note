@@ -1,6 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { documentsQuery } from '../renderer/src/models/documentsManager'
 
+import * as ipcs from './ipcs'
+
 
 /* const addDocument = (body) => {
   console.log('window.api', body)
@@ -22,6 +24,12 @@ const deleteDocumentsById = (id) => {
 
 // Custom APIs for renderer
 const api = {
+  ...ipcs,
+  
+  sayHelloFromBridge: () => console.log('\nHello from bridgeAPI! 👋\n\n'),
+
+  username: process.env.USER,
+
   getDocuments(){
     return ipcRenderer.invoke('getDocuments')
   },

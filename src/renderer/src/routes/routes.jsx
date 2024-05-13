@@ -1,8 +1,9 @@
 import { Router, Route } from 'electron-router-dom'
 
-import { Document } from '../pages/document'
-import { Default } from '../pages/layouts/default'
-import { Blank } from '../pages/blank'
+import { Default } from '../screens/main/layouts/default'
+import { Blank } from '../screens/main/blank'
+import { DocumentsScreen } from '../screens/documents'
+import { Document } from '../screens/main/document'
 
 export function Routes() {
   return (
@@ -12,6 +13,9 @@ export function Routes() {
           <Route path="/" element={<Blank />} />
           <Route path="/documents/:id" element={<Document />} />
         </Route>
+      }
+      documents={
+        <Route path="/" element={<DocumentsScreen />} />
       }
     />
   )

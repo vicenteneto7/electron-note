@@ -18,6 +18,7 @@ ipcMain.handle('getDocumentById', async (_, { id }) => {
 ipcMain.handle('addDocument', async () => {
   const body = {
     title: 'Untitled',
+    content: 'Untitled'
   }
 
   const query = `INSERT INTO documents (title)

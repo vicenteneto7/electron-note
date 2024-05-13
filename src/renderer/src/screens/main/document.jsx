@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Editor } from '../components/Editor'
-import { ToC } from '../components/ToC'
+import { ToC } from '../../components/ToC'
 import { useMemo } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Editor } from '../../components/Editor'
 
 export function Document() {
   const { id } = useParams()
@@ -26,7 +26,7 @@ export function Document() {
   }, [document])
 
   const { mutateAsync: saveDocument } = useMutation({
-    onSuccess: (_, { title, content }) => {
+    onSuccess: (_, title) => {
       queryClient.setQueryData(['documents'], (documents) => {
         return documents?.map((document) => {
           if (document.id === id) {
@@ -37,12 +37,17 @@ export function Document() {
         })
       })
     },
-    mutationFn: async () => {
-      async ({ title, content }) => {
-        await window.api.updateDocumentsById({ id, title, content })
-      }
+    mutationFn: async ({ title, content }) => {
+      await window.api.updateDocumentsById({ id, title, content })
     }
   })
+  function handleEditorContentUpdated(
+    title,
+    content,
+  ) {
+    console.log({ title, content });
+    saveDocument({ title, content });
+  }
 
   return (
     <main className="flex-1 flex py-12 px-10 gap-8">
@@ -59,9 +64,10 @@ export function Document() {
       </aside>
 
       <section className="flex-1 flex flex-col items-center">
-        {
-          !isFetching && document && <Editor onContentUpdated={saveDocument} content={initialContent}
-          />}
+        {!isFetching && document && (
+          <Editor onContentUpdated={handleEditorContentUpdated} content={initialContent}
+          />
+        )}
       </section>
     </main>
   )
