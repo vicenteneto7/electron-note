@@ -23,7 +23,7 @@ export default defineConfig({
         },
 
         output: {
-          dir: resolve(devPath, 'main'),
+          dir: resolve(devPath),
         },
       },
     },

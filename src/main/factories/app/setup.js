@@ -5,7 +5,7 @@ import {
   REACT_DEVELOPER_TOOLS,
 } from 'electron-extension-installer'
 
-import { PLATFORM, ENVIRONMENT } from '../../../../shared/constants'
+import { ENVIRONMENT, PLATFORM } from '../../../../shared/constants'
 import { makeAppId } from '../../../../shared/utils'
 
 export async function makeAppSetup(createWindow) {
@@ -23,8 +23,8 @@ export async function makeAppSetup(createWindow) {
     !BrowserWindow.getAllWindows().length
       ? (window = await createWindow())
       : BrowserWindow.getAllWindows()
-          ?.reverse()
-          .forEach((window) => window.restore())
+        ?.reverse()
+        .forEach((window) => window.restore())
   )
 
   app.on('web-contents-created', (_, contents) =>

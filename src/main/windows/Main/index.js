@@ -1,15 +1,15 @@
 import { BrowserWindow } from 'electron'
 import { join } from 'path'
-
-import { ENVIRONMENT } from '../../../../shared/constants'
 import { createWindow } from '../../factories'
+import { ENVIRONMENT } from '../../../../shared/constants'
+
 
 export async function MainWindow() {
   const window = createWindow({
     id: 'main',
-    title: 'Notion',
-    width: 700,
-    height: 473,
+    title: 'App Documents',
+    width: 1400,
+    height: 800,
     show: false,
     center: true,
     movable: true,
@@ -18,6 +18,7 @@ export async function MainWindow() {
     autoHideMenuBar: true,
 
     webPreferences: {
+      sandbox: false,
       preload: join(__dirname, '../preload/index.js'),
     },
   })

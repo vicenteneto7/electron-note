@@ -5,7 +5,7 @@ export * from './ipcs'
 export function DocumentsWindow() {
   const window = createWindow({
     id: 'documents',
-    title: `Documents`,
+    title: 'Documents',
     width: 450,
     height: 350,
     show: false,

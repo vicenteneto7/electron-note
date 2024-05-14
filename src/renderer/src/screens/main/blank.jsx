@@ -7,7 +7,6 @@ export function Blank() {
   const store = useWindowStore().about
 
   useEffect(() => {
-    window.api.sayHelloFromBridge()
 
     window.api.whenDocumentsWindowClose(({ message }) => {
       console.log(message)
@@ -24,6 +23,11 @@ export function Blank() {
     store.setAboutWindowState(true)
 
   }
+
+  console.log(window.api)
+  console.log(window.api)
+  console.log(window.api)
+  console.log(window.api)
 
   return (
     <main className="flex-1 flex items-center justify-center gap-3 text-rotion-400">

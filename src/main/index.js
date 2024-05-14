@@ -1,5 +1,7 @@
 import { app } from 'electron'
 
+import './ipc'
+
 import { makeAppSetup, makeAppWithSingleInstanceLock } from './factories'
 import { MainWindow, registerDocumentsWindowCreationByIPC } from './windows'
 

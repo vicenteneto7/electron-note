@@ -1,7 +1,6 @@
 import { ipcMain } from 'electron'
-
-import { registerWindowCreationByIPC } from '../../../factories'
 import { IPC } from '../../../../../shared/constants'
+import { registerWindowCreationByIPC } from '../../../factories'
 import { DocumentsWindow } from '..'
 
 export function registerDocumentsWindowCreationByIPC() {

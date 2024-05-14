@@ -26,8 +26,6 @@ const deleteDocumentsById = (id) => {
 const api = {
   ...ipcs,
 
-  sayHelloFromBridge: () => console.log('\nHellok from bridgeAPI! 👋\n\n'),
-
   username: process.env.USER,
 
   getDocuments(){
@@ -49,10 +47,18 @@ const api = {
     return ipcRenderer.invoke('fetch-documents')
   }
 }
-
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
 
     //preload-expoe ao processo renderer as apis, possiveis comunic entre main e renderer, ent elas tem q ser delcaradas no preload
-  contextBridge.exposeInMainWorld('api', api) 
+  // just add to the DOM global.
+if (process.contextIsolated) {
+  try {
+    contextBridge.exposeInMainWorld('api', api)
+  } catch (error) {
+    console.error(error)
+  }
+} else {
+  window.api = api
+}
