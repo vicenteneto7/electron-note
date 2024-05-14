@@ -1,35 +1,38 @@
-import { useWindowStore } from "../../store"
+import { Button } from "../../components/Button"
 import { useEffect } from "react"
-
-const { api } = window
-
+import { useWindowStore } from "../../store"
 
 export function Blank() {
 
-  const store = useWindowStore().documents
+  const store = useWindowStore().about
 
   useEffect(() => {
-    api.sayHelloFromBridge()
+    window.api.sayHelloFromBridge()
 
-    api.whenDocumentsWindowClose(({ message }) => {
+    window.api.whenDocumentsWindowClose(({ message }) => {
       console.log(message)
 
-      store.setDocumentsWindowState(false)
+
+      store.setAboutWindowState(false)
+
     })
-  }, [])
+  })
 
   function openDocumentsWindow() {
-    api.createDocumentsWindow()
-    store.setDocumentsWindowState(true)
+    window.api.createDocumentsWindow()
+
+    store.setAboutWindowState(true)
+
   }
 
   return (
     <main className="flex-1 flex items-center justify-center gap-3 text-rotion-400">
       Selecione ou crie um documento
-      <button
+      <Button
+        className={store.isOpen ? 'disabled' : ''}
         onClick={openDocumentsWindow}>
         Veja todos os documentos
-      </button>
+      </Button>
     </main>
   )
 }

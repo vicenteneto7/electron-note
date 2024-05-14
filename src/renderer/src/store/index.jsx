@@ -1,7 +1,7 @@
+import { useContext, createContext, useState } from 'react'
+
 import PropTypes from 'prop-types'
 
-
-import { useContext, createContext, useState } from 'react'
 
 
 const WindowStoreContext = createContext({})
@@ -14,18 +14,21 @@ export function WindowStoreProvider({
   children,
 }) {
   const [state, setState] = useState({
-    documents: { isOpen: false, setDocumentsWindowState },
+    about: { isOpen: false, setAboutWindowState },
   })
 
-  function setDocumentsWindowState(value) {
+  function setAboutWindowState(value) {
     setState((state) => ({
       ...state,
-      documents: {
-        ...state.documents,
+      about: {
+        ...state.about,
         isOpen: value,
       },
     }))
   }
+
+  console.log(setAboutWindowState)
+
 
   return (
     <WindowStoreContext.Provider value={state}>
@@ -34,6 +37,9 @@ export function WindowStoreProvider({
   )
 }
 
+
 WindowStoreProvider.propTypes = {
-    children: PropTypes.node,
-  }
+  children: PropTypes.node
+}
+
+

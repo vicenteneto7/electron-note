@@ -25,8 +25,8 @@ const deleteDocumentsById = (id) => {
 // Custom APIs for renderer
 const api = {
   ...ipcs,
-  
-  sayHelloFromBridge: () => console.log('\nHello from bridgeAPI! 👋\n\n'),
+
+  sayHelloFromBridge: () => console.log('\nHellok from bridgeAPI! 👋\n\n'),
 
   username: process.env.USER,
 
@@ -53,14 +53,6 @@ const api = {
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
-if (process.contextIsolated) {
-  //se context...existe dentro do process
-  try {
+
     //preload-expoe ao processo renderer as apis, possiveis comunic entre main e renderer, ent elas tem q ser delcaradas no preload
-    contextBridge.exposeInMainWorld('api', api)
-  } catch (error) {
-    console.error(error)
-  }
-} else {
-  window.api = api
-}
+  contextBridge.exposeInMainWorld('api', api) 
