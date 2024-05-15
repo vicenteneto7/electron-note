@@ -28,7 +28,7 @@ export function Blank() {
   console.log(window.api)
 
   return (
-    <main className="flex-1 flex items-center justify-center gap-3 text-rotion-400">
+    <main className="flex-1 flex items-center flex-col justify-center gap-3 text-rotion-400">
       Selecione ou crie um documento
       <Button
         className={store.isOpen ? 'disabled' : ''}

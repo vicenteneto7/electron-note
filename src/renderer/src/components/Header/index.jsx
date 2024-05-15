@@ -28,7 +28,7 @@ export function Header({ isSidebarOpen }) {
     <div
       id="header"
       className={clsx(
-        'border-b border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag',
+        'border-b border-rotion-600 h-14 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag',
         {
           'w-screen': !isSidebarOpen,
           'w-[calc(100vw-240px)]': isSidebarOpen
