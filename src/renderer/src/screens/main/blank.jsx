@@ -1,6 +1,7 @@
 import { Button } from "../../components/Button"
 import { useEffect } from "react"
 import { useWindowStore } from "../../store"
+import { DocumentsView } from "../../components/Documents"
 
 export function Blank() {
 
@@ -24,9 +25,6 @@ export function Blank() {
 
   }
 
-  console.log(window.api)
-  console.log(window.api)
-  console.log(window.api)
   console.log(window.api)
 
   return (

@@ -8,12 +8,12 @@ export async function MainWindow() {
   const window = createWindow({
     id: 'main',
     title: 'App Documents',
-    width: 1400,
+    width: 1100,
     height: 800,
     show: false,
     center: true,
     movable: true,
-    resizable: false,
+    resizable: true,
     alwaysOnTop: true,
     autoHideMenuBar: true,
 

@@ -3,6 +3,8 @@ import { IPC } from '../../../../../shared/constants'
 import { registerWindowCreationByIPC } from '../../../factories'
 import { DocumentsWindow } from '..'
 
+import '../../../ipc'
+
 export function registerDocumentsWindowCreationByIPC() {
   registerWindowCreationByIPC({
     channel: IPC.WINDOWS.DOCUMENTS.CREATE_WINDOW,

@@ -7,6 +7,7 @@ import { Search } from './Search'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
+import { DocumentsView } from '../Documents'
 
 export function Sidebar() {
   /*const [documents, setDocuments] = useState([])
@@ -73,6 +74,10 @@ export function Sidebar() {
             </Navigation.SectionContent>
           </Navigation.Section>
         </Navigation.Root>
+
+        <div className=' border-red-500'></div>
+
+        <DocumentsView />
 
         <CreatePage />
       </div>
